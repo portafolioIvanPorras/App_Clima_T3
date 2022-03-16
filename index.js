@@ -35,6 +35,7 @@ let weather = {
 
 document.querySelector('.btn-search').addEventListener('click', function () {
   weather.search();
+  cleanUp();
 });
 
 document
@@ -42,7 +43,12 @@ document
   .addEventListener('keyup', function (event) {
     if (event.key == 'Enter') {
       weather.search();
+      cleanUp();
     }
   });
+
+function cleanUp () {
+  document.getElementById('search-bar').value="";
+}
 
 weather.fetchWeather('Guatemala');
