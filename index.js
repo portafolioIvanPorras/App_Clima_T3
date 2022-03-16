@@ -1,3 +1,6 @@
+const date = new Date();
+const search = document.getElementById('search');
+let fecha = date.toLocaleDateString();
 let weather = {
   apiKey: '631804e07c716f88136d45ae594aa00d',
   fetchWeather: function (city) {
@@ -23,20 +26,23 @@ let weather = {
     document.querySelector('.wind').innerText =
       'Velocidad de Viento: ' + speed + ' km/h';
     document.querySelector('.weather').classList.remove('loading');
+    document.querySelector('.date').innerText = 'Fecha: ' + fecha;
   },
-  search: function() {
+  search: function () {
     this.fetchWeather(document.querySelector('.search-bar').value);
   },
 };
 
-document.querySelector('.btn-search').addEventListener('click', function() {
+document.querySelector('.btn-search').addEventListener('click', function () {
   weather.search();
 });
 
-document.querySelector('.search-bar').addEventListener('keyup', function(event) {
-    if(event.key == "Enter"){
-        weather.search();
+document
+  .querySelector('.search-bar')
+  .addEventListener('keyup', function (event) {
+    if (event.key == 'Enter') {
+      weather.search();
     }
-})
+  });
 
-weather.fetchWeather("Guatemala");
+weather.fetchWeather('Guatemala');
